@@ -3,6 +3,7 @@ pipeline {
     environment{
         NOMBRE = 'Maximiliano'
         APELLIDO = 'Robledo'
+        DH_CREDENTIALS = credentials('dockerhub')
     }
     stages {
         stage('Build') { 
@@ -10,6 +11,7 @@ pipeline {
 		        sh '''
                 	echo "Pasos múltiples de shell también funcionan"
                     echo "Consultor DevOps Jr. - $NOMBRE $APELLIDO"
+                    echo "Mis credenciales son $DH_CREDENTIALS"
              	'''
             }
         }
