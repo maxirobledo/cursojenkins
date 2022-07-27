@@ -1,11 +1,15 @@
 pipeline {
     agent any 
+    environment{
+        NOMBRE = 'Maximiliano'
+        APELLIDO = 'Robledo'
+    }
     stages {
         stage('Build') { 
             steps {                
-		sh '''
+		        sh '''
                 	echo "Pasos múltiples de shell también funcionan"
-			pwd
+                    echo "Consultor DevOps Jr. - $NOMBRE $APELLIDO"
              	'''
             }
         }
