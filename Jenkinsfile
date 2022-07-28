@@ -1,28 +1,20 @@
 pipeline {
-    agent any 
-    environment{
-        NOMBRE = 'Maximiliano'
-        APELLIDO = 'Robledo'
-        U1_CREDENTIALS = credentials('usuario1')
+    agent any
+    parameters {
+        string(name: 'PERSONA', defaultValue: 'Julian', description: 'A quien debo saludar?')
+
+        booleanParam(name: 'FLAG', defaultValue: true, description: 'FLAG Verdadera?')
+
+        choice(name: 'Eleccion', choices: ['A', 'B', 'C'], description: 'Elegir una opción')
     }
     stages {
-        stage('Build') { 
-            steps {                
-		        sh '''
-                	echo "Pasos múltiples de shell también funcionan"
-                    echo "Consultor DevOps Jr. - $NOMBRE $APELLIDO"
-                    echo "Mis credenciales son $U1_CREDENTIALS_USR y password $U1_CREDENTIALS_PSW"
-             	'''
-            }
-        }
-        stage('Test') { 
+        stage('Clase de Parametros') {
             steps {
-                sh 'echo "Arranca el proceso de pruebas unitarias" '
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                sh 'echo "Desplegando al área de desarrollo" '  
+                echo "Hola, como estas ${params.PERSONA}"
+
+                echo "FLAG: ${params.FLAG}"
+
+                echo "Eleccion: ${params.Eleccion}"
             }
         }
     }
