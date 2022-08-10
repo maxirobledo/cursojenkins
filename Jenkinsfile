@@ -10,7 +10,7 @@ pipeline {
         stage('Etapa 2') {
             input {
                 message "Continuar el proyecto?"
-                ok "Si, continuar por favor."
+                ok "Continuar"
                 parameters {
                     string(name: 'PERSONA', defaultValue: 'Julian', description: 'A quien debo saludar?')
                 }
