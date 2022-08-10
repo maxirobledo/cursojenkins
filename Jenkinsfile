@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    options {
+        timeout(time: 60, unit: 'SECONDS') 
+    }
     stages {
         stage('Etapa 1') { 
             steps {
@@ -20,4 +23,16 @@ pipeline {
             }
         }
     }
+    post { 
+        success{
+            echo 'Esta ejecución ha finalizado exiitosamente'
+        }
+        aborted{
+            echo 'Esta ejecución se ha abortado'
+        }
+        failure { 
+            echo 'Esta ejecución ha fallado'
+        }
+    }
 }
+
